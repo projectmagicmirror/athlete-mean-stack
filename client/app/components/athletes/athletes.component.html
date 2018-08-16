@@ -1,0 +1,148 @@
+<div class="container">
+	<div class="container athletes-add">
+		<h4>Add a new Athlete</h4>
+		<form class="well" (submit)="addAthlete()">
+			<div class="form-group row">
+				<div class="row col-12">
+					<div class="col-6">
+						Name:<input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Name of Athlete" required>
+					</div>
+					<div class="col-6">
+						Date Of Birth:
+						<input type="date" class="form-control" [(ngModel)]="dateOfBirth" name="dateOfBirth" placeHolder="YYYY-MM-DD" required>
+					</div>
+				</div>
+				<div class="row col-12">
+					<div class="col-6">
+						Association:<input type="text" [(ngModel)]="association" name="association" class="form-control" placeHolder="Name of Association" required>
+					</div>
+					<div class="col-6">
+						Sport:
+						<select class="form-control" id="sport" [(ngModel)]="sport" name="sport" required>
+							<option *ngFor="let sport of sports" [value]="sport">{{sport}}</option>
+						</select>
+						<div class="invalid-feedback">Invalid Choice</div>
+					</div>
+				</div>
+				<div class="row col-12">
+					<div class="col-6">
+						Team:<input type="text" [(ngModel)]="team" name="team" class="form-control" placeHolder="Name of Team">
+					</div>
+					<div class="col-6">
+						Gender:<input type="text" [(ngModel)]="gender" name="gender" class="form-control" placeHolder="Specify Gender">
+					</div>
+				</div>
+				<div class="row col-12">
+					<div class="col-12">
+						About:<input type="text" [(ngModel)]="about" name="about" class="form-control" placeHolder="Write something about the Athlete!">
+					</div>
+				</div>
+			</div>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+
+	<div class="container atlhetes-list">
+
+
+		<h4>Current Athletes</h4>
+
+		<div class="container" *ngFor="let athlete of athletes; let i = index">
+			<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample{{i}}" role="button" style="width:95%; background:#779bbb">
+				<div class="row">
+					<div class="col-4">{{athlete.name}}</div>
+					<div class="col-3">{{athlete.sport}}</div>
+					<div class="col-5">{{athlete.team}}; {{athlete.association}}</div>
+				</div>
+				
+			</a>
+
+			<div class="collapse" id="collapseExample{{i}}">
+				<div class="card card-body" style="width:95%;">
+					<h4>Date of Birth: </h4>
+					{{athlete.dateOfBirth}}
+				</div>
+				<div class="card card-body" style="width:95%;">
+					<h4>Gender: </h4>
+					{{athlete.gender}}
+				</div>
+				<div class="card card-body" style="width:95%;">
+					<h4>About: </h4>
+					{{athlete.about}}
+				</div>
+				<div class="card card-body" style="width:95%;">
+					<h4>Consumes Alcohol: </h4>
+					<input type="checkbox" [checked]="athlete.isAlcoholic" (click)="updateAthlete(athlete)">
+				</div>
+			</div>
+
+			<br>
+		</div>
+	</div>
+</div>
+
+<!-- 	<form>
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" [(ngModel)]="name" name="name" class="form-control" id="name" required>
+		</div>
+
+		<div class="form-group">
+			<label for="sport">Sports</label>
+			<select class="form-control" id="sport" required>
+				<option *ngFor="let sport of sports" [value]="sport">{{sport}}</option>
+			</select>
+		</div>
+
+		<button type="submit" class="btn btn-success" submit="addAthlete($event)">Submit</button>
+	</form> -->
+
+
+<!-- <div class="container">
+	<div [hidden]="submitted">
+		<h3>Add a new Athlete</h3>
+		<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" id="name" required
+					[(ngModel)]="model.name" name="name" #name="ngModel">
+				<div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+					Name is Required
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="sport">Sports</label>
+				<select class="form-control" id="sport" required
+					[(ngModel)]="model.sport" name="sport" #sport="ngModel">
+					<option *ngFor="let sport of sports" [value]="sport">{{sport}}</option>
+				</select>
+				<div [hidden]="sport.valid || sport.pristine" class="alert alert-danger">
+					Sport is Required
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-success"
+				[disabled]="!AthleteForm.form.valid">Submit</button>
+			<button type="button" class="btn btn-default" click="newHero(); heroForm.reset()">
+				New Hero
+			</button>
+		</form>	
+	</div>
+
+	<div [hidden]="!submitted">
+		<h2>You submitted:</h2>
+		<div class="row">
+			<div class="col-xs-3">Name</div>
+			<div class="col-xs-9 pull-left">{{model.name}}</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-3">Power</div>
+			<div class="col-xs-9 pull-left">{{model.power}}</div>
+		</div>
+		<br>
+		<button class="btn btn-primary" (click)="submitted=false">Edit</button>
+	</div>
+
+</div> -->
